@@ -1,0 +1,251 @@
+# spaceship_detailed.obj
+mtllib spaceship_detailed.mtl
+o DetailedShip
+
+# A more detailed “low-poly” spaceship:
+# - segmented hull (top/bottom/left/right panels)
+# - dual wings with winglets
+# - cockpit canopy
+# - twin engines + nozzle rings
+# - small dorsal fin + side intakes
+
+# ----------------------
+# Vertices
+# ----------------------
+
+# Nose section (segmented)
+v  0.00  0.00  1.70   # 1 nose tip
+v  0.00  0.14  1.35   # 2 nose top
+v  0.00 -0.14  1.35   # 3 nose bottom
+v -0.16  0.00  1.35   # 4 nose left
+v  0.16  0.00  1.35   # 5 nose right
+
+# Front ring
+v  0.00  0.20  0.95   # 6 front top
+v  0.00 -0.20  0.95   # 7 front bottom
+v -0.24  0.00  0.95   # 8 front left
+v  0.24  0.00  0.95   # 9 front right
+
+# Mid ring (slightly wider)
+v  0.00  0.24  0.30   #10 mid top
+v  0.00 -0.24  0.30   #11 mid bottom
+v -0.30  0.00  0.30   #12 mid left
+v  0.30  0.00  0.30   #13 mid right
+
+# Rear ring (thicker, near engines)
+v  0.00  0.22 -0.35   #14 rear top
+v  0.00 -0.22 -0.35   #15 rear bottom
+v -0.28  0.00 -0.35   #16 rear left
+v  0.28  0.00 -0.35   #17 rear right
+
+# Tail tip
+v  0.00  0.00 -1.20   #18 tail tip
+
+# Additional “corner” verts to add facets around mid/rear (gives more detail)
+v -0.18  0.14  0.30   #19 mid left-top
+v  0.18  0.14  0.30   #20 mid right-top
+v  0.18 -0.14  0.30   #21 mid right-bottom
+v -0.18 -0.14  0.30   #22 mid left-bottom
+
+v -0.16  0.12 -0.35   #23 rear left-top
+v  0.16  0.12 -0.35   #24 rear right-top
+v  0.16 -0.12 -0.35   #25 rear right-bottom
+v -0.16 -0.12 -0.35   #26 rear left-bottom
+
+# Cockpit canopy (brass)
+v  0.00  0.24  0.85   #27 canopy top front
+v -0.14  0.10  0.82   #28 canopy left front
+v  0.14  0.10  0.82   #29 canopy right front
+v  0.00  0.10  0.55   #30 canopy back
+
+# Dorsal fin (plastic)
+v  0.00  0.55 -0.55   #31 fin top
+v  0.00  0.20 -0.35   #32 fin base front
+v  0.00  0.20 -0.80   #33 fin base back
+
+# Wings (plastic) - left
+v -0.40  0.00  0.25   #34 left wing root front
+v -0.60  0.00 -0.10  #35 left wing root mid
+v -1.10  0.00  0.05  #36 left wing tip
+v -0.85  0.00 -0.55  #37 left wing aft tip
+
+# Wings (plastic) - right
+v  0.40  0.00  0.25   #38 right wing root front
+v  0.60  0.00 -0.10  #39 right wing root mid
+v  1.10  0.00  0.05  #40 right wing tip
+v  0.85  0.00 -0.55  #41 right wing aft tip
+
+# Winglets (plastic) - small upward triangles
+v -1.05  0.18  0.02  #42 left winglet top
+v  1.05  0.18  0.02  #43 right winglet top
+
+# Side intakes (brass) - left and right small boxes (triangulated)
+# Left intake
+v -0.36  0.06  0.10  #44
+v -0.36 -0.06  0.10 #45
+v -0.50 -0.06 -0.05 #46
+v -0.50  0.06 -0.05 #47
+# Right intake
+v  0.36  0.06  0.10  #48
+v  0.36 -0.06  0.10 #49
+v  0.50 -0.06 -0.05 #50
+v  0.50  0.06 -0.05 #51
+
+# Engines (brass) - two bells (each a small pyramid-ish frustum)
+# Left engine mouth rectangle (near rear ring)
+v -0.35  0.10 -0.60  #52 left outer top
+v -0.35 -0.10 -0.60 #53 left outer bottom
+v -0.15 -0.10 -0.60 #54 left inner bottom
+v -0.15  0.10 -0.60 #55 left inner top
+v -0.25  0.00 -0.95 #56 left engine center (back)
+
+# Right engine
+v  0.15  0.10 -0.60  #57 right inner top
+v  0.15 -0.10 -0.60 #58 right inner bottom
+v  0.35 -0.10 -0.60 #59 right outer bottom
+v  0.35  0.10 -0.60  #60 right outer top
+v  0.25  0.00 -0.95  #61 right engine center (back)
+
+# Nozzle rings (rubber) - two quads (2 tris each)
+# Left ring (slightly larger than engine mouth)
+v -0.38  0.12 -0.60  #62
+v -0.38 -0.12 -0.60 #63
+v -0.12 -0.12 -0.60 #64
+v -0.12  0.12 -0.60 #65
+
+# Right ring
+v  0.12  0.12 -0.60  #66
+v  0.12 -0.12 -0.60 #67
+v  0.38 -0.12 -0.60 #68
+v  0.38  0.12 -0.60  #69
+
+# ----------------------
+# Faces
+# ----------------------
+
+# HULL + PANELS (plastic)
+usemtl plastic
+g hull
+
+# Nose tip to nose ring
+f 1 5 2
+f 1 2 4
+f 1 4 3
+f 1 3 5
+
+# Nose ring to front ring (build 8 triangles around)
+f 2 6 5
+f 5 6 9
+f 5 9 3
+f 3 9 7
+f 3 7 4
+f 4 7 8
+f 4 8 2
+f 2 8 6
+
+# Front ring to mid ring (top/bottom/left/right plus beveled corners using 19-22)
+f 6 20 10
+f 6 9 20
+f 9 13 20
+f 6 10 8
+f 8 10 19
+f 8 19 12
+f 7 11 9
+f 9 11 13
+f 7 8 11
+f 8 12 11
+
+# Mid ring to rear ring using corner verts 23-26 for extra facets
+f 10 24 14
+f 10 20 24
+f 13 17 24
+f 13 24 20
+f 12 23 19
+f 12 16 23
+f 10 19 23
+f 10 23 14
+f 11 15 12
+f 11 12 22
+f 11 22 21
+f 11 21 13
+f 13 21 17
+f 12 15 16
+f 14 24 17
+f 14 23 16
+f 15 17 25
+f 15 26 16
+
+# Rear ring to tail tip (faceted)
+f 14 17 18
+f 17 15 18
+f 15 16 18
+f 16 14 18
+
+# Close rear “cap” near engines (optional)
+f 14 16 15
+f 14 15 17
+
+# Dorsal fin (plastic)
+g fin
+f 32 31 33
+
+# Wings (plastic) - left (two triangles per wing quad-ish shape)
+g wings
+f 34 36 35
+f 35 36 37
+
+# Wings (plastic) - right
+f 38 39 40
+f 39 41 40
+
+# Winglets (plastic)
+g winglets
+f 36 42 37
+f 40 41 43
+
+# COCKPIT (brass)
+usemtl brass
+g cockpit
+f 27 29 28
+f 28 29 30
+f 29 27 30
+f 27 28 30
+
+# SIDE INTAKES (brass) - left box (12 triangles total simplified to 8)
+g intakes
+# Left intake sides
+f 44 45 46
+f 44 46 47
+# Left intake front cap
+f 44 47 45
+f 45 47 46
+
+# Right intake
+f 48 51 49
+f 49 51 50
+f 48 49 51
+f 49 50 51
+
+# ENGINES (brass)
+g engines
+# Left engine: connect center to mouth rectangle
+f 56 52 55
+f 56 55 54
+f 56 54 53
+f 56 53 52
+
+# Right engine
+f 61 57 60
+f 61 58 57
+f 61 59 58
+f 61 60 59
+
+# NOZZLE RINGS (rubber)
+usemtl rubber
+g nozzles
+# Left ring (two triangles)
+f 62 63 64
+f 62 64 65
+# Right ring
+f 66 67 68
+f 66 68 69
